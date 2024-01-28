@@ -1,0 +1,31 @@
+C:\Users\Jamero\source\repos\ToDo\ToDo\bin\Debug\ToDo.exe.config
+C:\Users\Jamero\source\repos\ToDo\ToDo\bin\Debug\ToDo.exe
+C:\Users\Jamero\source\repos\ToDo\ToDo\bin\Debug\ToDo.pdb
+C:\Users\Jamero\source\repos\ToDo\ToDo\obj\Debug\ToDo.csproj.AssemblyReference.cache
+C:\Users\Jamero\source\repos\ToDo\ToDo\obj\Debug\ToDo.Properties.Resources.resources
+C:\Users\Jamero\source\repos\ToDo\ToDo\obj\Debug\ToDo.csproj.GenerateResource.cache
+C:\Users\Jamero\source\repos\ToDo\ToDo\obj\Debug\ToDo.csproj.CoreCompileInputs.cache
+C:\Users\Jamero\source\repos\ToDo\ToDo\obj\Debug\ToDo.exe
+C:\Users\Jamero\source\repos\ToDo\ToDo\obj\Debug\ToDo.pdb
+C:\Users\Jamero\source\repos\ToDo\ToDo\obj\Debug\ToDo.TodoList.resources
+C:\Users\Jamero\OneDrive - Polytechnic University of the Philippines\3rd Year\App Dev\ToDo\ToDo\bin\Debug\ToDo.exe.config
+C:\Users\Jamero\OneDrive - Polytechnic University of the Philippines\3rd Year\App Dev\ToDo\ToDo\bin\Debug\ToDo.exe
+C:\Users\Jamero\OneDrive - Polytechnic University of the Philippines\3rd Year\App Dev\ToDo\ToDo\bin\Debug\ToDo.pdb
+C:\Users\Jamero\OneDrive - Polytechnic University of the Philippines\3rd Year\App Dev\ToDo\ToDo\obj\Debug\ToDo.csproj.AssemblyReference.cache
+C:\Users\Jamero\OneDrive - Polytechnic University of the Philippines\3rd Year\App Dev\ToDo\ToDo\obj\Debug\ToDo.TodoList.resources
+C:\Users\Jamero\OneDrive - Polytechnic University of the Philippines\3rd Year\App Dev\ToDo\ToDo\obj\Debug\ToDo.Properties.Resources.resources
+C:\Users\Jamero\OneDrive - Polytechnic University of the Philippines\3rd Year\App Dev\ToDo\ToDo\obj\Debug\ToDo.csproj.GenerateResource.cache
+C:\Users\Jamero\OneDrive - Polytechnic University of the Philippines\3rd Year\App Dev\ToDo\ToDo\obj\Debug\ToDo.csproj.CoreCompileInputs.cache
+C:\Users\Jamero\OneDrive - Polytechnic University of the Philippines\3rd Year\App Dev\ToDo\ToDo\obj\Debug\ToDo.exe
+C:\Users\Jamero\OneDrive - Polytechnic University of the Philippines\3rd Year\App Dev\ToDo\ToDo\obj\Debug\ToDo.pdb
+C:\Users\Eman\OneDrive - Polytechnic University of the Philippines\3rd Year\App Dev\ToDo\ToDo\bin\Debug\ToDo.exe.config
+C:\Users\Eman\OneDrive - Polytechnic University of the Philippines\3rd Year\App Dev\ToDo\ToDo\bin\Debug\ToDo.exe
+C:\Users\Eman\OneDrive - Polytechnic University of the Philippines\3rd Year\App Dev\ToDo\ToDo\bin\Debug\ToDo.pdb
+C:\Users\Eman\OneDrive - Polytechnic University of the Philippines\3rd Year\App Dev\ToDo\ToDo\obj\Debug\ToDo.csproj.AssemblyReference.cache
+C:\Users\Eman\OneDrive - Polytechnic University of the Philippines\3rd Year\App Dev\ToDo\ToDo\obj\Debug\ToDo.TodoList.resources
+C:\Users\Eman\OneDrive - Polytechnic University of the Philippines\3rd Year\App Dev\ToDo\ToDo\obj\Debug\ToDo.Properties.Resources.resources
+C:\Users\Eman\OneDrive - Polytechnic University of the Philippines\3rd Year\App Dev\ToDo\ToDo\obj\Debug\ToDo.csproj.GenerateResource.cache
+C:\Users\Eman\OneDrive - Polytechnic University of the Philippines\3rd Year\App Dev\ToDo\ToDo\obj\Debug\ToDo.csproj.CoreCompileInputs.cache
+C:\Users\Eman\OneDrive - Polytechnic University of the Philippines\3rd Year\App Dev\ToDo\ToDo\obj\Debug\ToDo.exe
+C:\Users\Eman\OneDrive - Polytechnic University of the Philippines\3rd Year\App Dev\ToDo\ToDo\obj\Debug\ToDo.pdb
+C:\Users\Eman\OneDrive - Polytechnic University of the Philippines\3rd Year\App Dev\ToDo\ToDo\obj\Debug\ToDo.CalendarForm.resources
