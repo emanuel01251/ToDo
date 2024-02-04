@@ -29,3 +29,25 @@ C:\Users\Eman\OneDrive - Polytechnic University of the Philippines\3rd Year\App 
 C:\Users\Eman\OneDrive - Polytechnic University of the Philippines\3rd Year\App Dev\ToDo\ToDo\obj\Debug\ToDo.exe
 C:\Users\Eman\OneDrive - Polytechnic University of the Philippines\3rd Year\App Dev\ToDo\ToDo\obj\Debug\ToDo.pdb
 C:\Users\Eman\OneDrive - Polytechnic University of the Philippines\3rd Year\App Dev\ToDo\ToDo\obj\Debug\ToDo.CalendarForm.resources
+C:\Users\Eman\Documents\GitHub\ToDo\ToDo\bin\Debug\ToDo.exe.config
+C:\Users\Eman\Documents\GitHub\ToDo\ToDo\bin\Debug\ToDo.exe
+C:\Users\Eman\Documents\GitHub\ToDo\ToDo\bin\Debug\ToDo.pdb
+C:\Users\Eman\Documents\GitHub\ToDo\ToDo\obj\Debug\ToDo.csproj.AssemblyReference.cache
+C:\Users\Eman\Documents\GitHub\ToDo\ToDo\obj\Debug\ToDo.CalendarForm.resources
+C:\Users\Eman\Documents\GitHub\ToDo\ToDo\obj\Debug\ToDo.TodoList.resources
+C:\Users\Eman\Documents\GitHub\ToDo\ToDo\obj\Debug\ToDo.Properties.Resources.resources
+C:\Users\Eman\Documents\GitHub\ToDo\ToDo\obj\Debug\ToDo.csproj.GenerateResource.cache
+C:\Users\Eman\Documents\GitHub\ToDo\ToDo\obj\Debug\ToDo.csproj.CoreCompileInputs.cache
+C:\Users\Eman\Documents\GitHub\ToDo\ToDo\obj\Debug\ToDo.exe
+C:\Users\Eman\Documents\GitHub\ToDo\ToDo\obj\Debug\ToDo.pdb
+C:\Users\Eman\ToDo\ToDo\bin\Debug\ToDo.exe.config
+C:\Users\Eman\ToDo\ToDo\bin\Debug\ToDo.exe
+C:\Users\Eman\ToDo\ToDo\bin\Debug\ToDo.pdb
+C:\Users\Eman\ToDo\ToDo\obj\Debug\ToDo.csproj.AssemblyReference.cache
+C:\Users\Eman\ToDo\ToDo\obj\Debug\ToDo.CalendarForm.resources
+C:\Users\Eman\ToDo\ToDo\obj\Debug\ToDo.TodoList.resources
+C:\Users\Eman\ToDo\ToDo\obj\Debug\ToDo.Properties.Resources.resources
+C:\Users\Eman\ToDo\ToDo\obj\Debug\ToDo.csproj.GenerateResource.cache
+C:\Users\Eman\ToDo\ToDo\obj\Debug\ToDo.csproj.CoreCompileInputs.cache
+C:\Users\Eman\ToDo\ToDo\obj\Debug\ToDo.exe
+C:\Users\Eman\ToDo\ToDo\obj\Debug\ToDo.pdb

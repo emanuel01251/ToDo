@@ -9,23 +9,20 @@ namespace ToDo
 {
     public partial class CalendarForm : Form
     {
+        private ICalendarGenerator _calendarGenerator;
         private DataTable _todoList;
 
-        public CalendarForm(DataTable todoList)
+        public DataTable TodoList { get; }
+
+        public CalendarForm(DataTable todoList, ICalendarGenerator calendarGenerator)
         {
             InitializeComponent();
             _todoList = todoList;
+            _calendarGenerator = calendarGenerator;
 
             SetUpComboBoxes();
-
-            this.cmbMonth.SelectedIndexChanged += new EventHandler(cmbMonthYear_SelectedIndexChanged);
-            this.cmbYear.SelectedIndexChanged += new EventHandler(cmbMonthYear_SelectedIndexChanged);
-            this.cmbWeeks.SelectedIndexChanged += new EventHandler(cmbWeeks_SelectedIndexChanged);
-
-            // Populate the weeks ComboBox based on the current month and year
-            PopulateWeeksComboBox(DateTime.Now.Month, DateTime.Now.Year);
+            InitializeWeeklyCalendar(DateTime.Now);
         }
-
 
         private void SetUpComboBoxes()
         {
@@ -45,62 +42,14 @@ namespace ToDo
 
         private void InitializeWeeklyCalendar(DateTime startDate)
         {
-            // Clear existing labels
-            foreach (FlowLayoutPanel panel in calendarLayoutPanel.Controls)
-            {
-                panel.Controls.Clear();
-            }
-
-
-            for (int i = 0; i < 7; i++)
-            {
-                DateTime currentDay = startDate.AddDays(i);
-                int columnIndex = (int)currentDay.DayOfWeek;
-
-                FlowLayoutPanel dayPanel = (FlowLayoutPanel)calendarLayoutPanel.GetControlFromPosition(columnIndex, 0);
-                if (dayPanel != null)
-                {
-                    Label lblDay = new Label
-                    {
-                        Text = currentDay.ToString("dddd, MMMM d"),
-                        Dock = DockStyle.Top,
-                        TextAlign = ContentAlignment.MiddleCenter,
-                        Font = new Font("Arial", 10, FontStyle.Bold),
-                        Height = 20
-                    };
-                    dayPanel.Controls.Add(lblDay);
-                }
-            }
+            // Use the _calendarGenerator to create the layout
+            _calendarGenerator.GenerateCalendarLayout(calendarLayoutPanel, startDate);
         }
 
         private void PopulateWeeklyCalendar(DateTime startDate)
         {
-            // Clear existing items
-            foreach (FlowLayoutPanel panel in calendarLayoutPanel.Controls)
-            {
-                // Skip the day header
-                for (int i = panel.Controls.Count - 1; i > 0; i--)
-                {
-                    panel.Controls.RemoveAt(i);
-                }
-            }
-
-            // Populate each day's panel with to-do items
-            var endDate = startDate.AddDays(7);
-            foreach (DataRow row in _todoList.Rows)
-            {
-                var date = (DateTime)row["Date"];
-                if (date >= startDate && date < endDate)
-                {
-                    var title = row["Title"].ToString();
-                    var panel = (FlowLayoutPanel)calendarLayoutPanel.GetControlFromPosition((int)date.DayOfWeek, 0);
-                    panel.Controls.Add(new Label
-                    {
-                        Text = title,
-                        AutoSize = true
-                    });
-                }
-            }
+            // Use the _calendarGenerator to populate the calendar
+            _calendarGenerator.PopulateCalendar(calendarLayoutPanel, startDate, _todoList);
         }
 
         private void cmbMonthYear_SelectedIndexChanged(object sender, EventArgs e)
@@ -168,5 +117,9 @@ namespace ToDo
             }
         }
 
+        private void calendarLayoutPanel_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

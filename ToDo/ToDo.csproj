@@ -53,6 +53,8 @@
     <Compile Include="CalendarForm.Designer.cs">
       <DependentUpon>CalendarForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="CalendarGenerator.cs" />
+    <Compile Include="ICalendarGenerator.cs" />
     <Compile Include="TodoList.cs">
       <SubType>Form</SubType>
     </Compile>

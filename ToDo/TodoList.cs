@@ -46,22 +46,22 @@ namespace ToDo
             }
             else
             {
-                
+
             }
 
-            
+
             RefreshTodoList(monthCalendar1.SelectionRange.Start.Date);
         }
 
         private void monthCalendar1_DateChanged(object sender, DateRangeEventArgs e)
         {
-            
+
             RefreshTodoList(e.Start);
         }
 
         private void FilterTodosByDate(DateTime date)
         {
-            
+
             DataView view = new DataView(todoList);
             view.RowFilter = $"Date = '{date.ToString("yyyy-MM-dd")}'";
             toDoListView.DataSource = view;
@@ -80,7 +80,7 @@ namespace ToDo
             {
                 todoList.Rows.Add(monthCalendar1.SelectionRange.Start.Date, textBoxTitle.Text, textBoxDescription.Text);
             }
-            
+
             textBoxTitle.Text = "";
             textBoxDescription.Text = "";
             isEditing = false;
@@ -143,7 +143,11 @@ namespace ToDo
 
         private void btnOpenCalendar_Click(object sender, EventArgs e)
         {
-            CalendarForm calendarForm = new CalendarForm(todoList); // Assuming todoList is your DataTable
+            ICalendarGenerator calendarGenerator = new CalendarGenerator();
+ 
+
+            CalendarForm calendarForm = new CalendarForm(todoList, calendarGenerator);
+
             calendarForm.Show();
         }
 
