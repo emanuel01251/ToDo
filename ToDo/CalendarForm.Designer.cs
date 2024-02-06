@@ -72,7 +72,7 @@
             this.calendarLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 120F));
             this.calendarLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 108F));
             this.calendarLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 109F));
-            this.calendarLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 113F));
+            this.calendarLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 115F));
             this.calendarLayoutPanel.Controls.Add(this.flowLayoutPanel7, 6, 0);
             this.calendarLayoutPanel.Controls.Add(this.flowLayoutPanel6, 5, 0);
             this.calendarLayoutPanel.Controls.Add(this.flowLayoutPanel5, 4, 0);
@@ -90,42 +90,42 @@
             // 
             // flowLayoutPanel7
             // 
-            this.flowLayoutPanel7.Location = new System.Drawing.Point(665, 3);
+            this.flowLayoutPanel7.Location = new System.Drawing.Point(663, 3);
             this.flowLayoutPanel7.Name = "flowLayoutPanel7";
             this.flowLayoutPanel7.Size = new System.Drawing.Size(94, 100);
             this.flowLayoutPanel7.TabIndex = 7;
             // 
             // flowLayoutPanel6
             // 
-            this.flowLayoutPanel6.Location = new System.Drawing.Point(556, 3);
+            this.flowLayoutPanel6.Location = new System.Drawing.Point(554, 3);
             this.flowLayoutPanel6.Name = "flowLayoutPanel6";
             this.flowLayoutPanel6.Size = new System.Drawing.Size(94, 100);
             this.flowLayoutPanel6.TabIndex = 6;
             // 
             // flowLayoutPanel5
             // 
-            this.flowLayoutPanel5.Location = new System.Drawing.Point(448, 3);
+            this.flowLayoutPanel5.Location = new System.Drawing.Point(446, 3);
             this.flowLayoutPanel5.Name = "flowLayoutPanel5";
             this.flowLayoutPanel5.Size = new System.Drawing.Size(94, 100);
             this.flowLayoutPanel5.TabIndex = 5;
             // 
             // flowLayoutPanel4
             // 
-            this.flowLayoutPanel4.Location = new System.Drawing.Point(328, 3);
+            this.flowLayoutPanel4.Location = new System.Drawing.Point(326, 3);
             this.flowLayoutPanel4.Name = "flowLayoutPanel4";
             this.flowLayoutPanel4.Size = new System.Drawing.Size(94, 100);
             this.flowLayoutPanel4.TabIndex = 4;
             // 
             // flowLayoutPanel3
             // 
-            this.flowLayoutPanel3.Location = new System.Drawing.Point(210, 3);
+            this.flowLayoutPanel3.Location = new System.Drawing.Point(208, 3);
             this.flowLayoutPanel3.Name = "flowLayoutPanel3";
             this.flowLayoutPanel3.Size = new System.Drawing.Size(94, 100);
             this.flowLayoutPanel3.TabIndex = 3;
             // 
             // flowLayoutPanel2
             // 
-            this.flowLayoutPanel2.Location = new System.Drawing.Point(102, 3);
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(101, 3);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
             this.flowLayoutPanel2.Size = new System.Drawing.Size(94, 100);
             this.flowLayoutPanel2.TabIndex = 2;
@@ -134,7 +134,7 @@
             // 
             this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 3);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(93, 100);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(92, 100);
             this.flowLayoutPanel1.TabIndex = 1;
             // 
             // cmbWeeks

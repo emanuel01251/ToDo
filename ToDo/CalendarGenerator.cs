@@ -60,7 +60,7 @@ namespace ToDo
 
         public void PopulateCalendar(TableLayoutPanel panel, DateTime startDate, DataTable todoList)
         {
-            // Assuming each column in the panel represents a day and each row represents a to-do item
+            // each column in the panel represents a day and each row represents a to-do item
             foreach (DataRow row in todoList.Rows)
             {
                 var date = (DateTime)row["Date"];
@@ -74,7 +74,7 @@ namespace ToDo
                     // Create a control to represent the to-do item
                     var taskLabel = new Label
                     {
-                        Text = row["Title"].ToString(),
+                        Text = row["Title"].ToString() + " - " + row["Description"].ToString() + " - " + row["Deadline"].ToString(),
                         Font = new Font("Arial", 10, FontStyle.Regular),
                         Height = 20,
                         AutoSize = true,

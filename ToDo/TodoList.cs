@@ -2,6 +2,7 @@
 using System.Data;
 using System.Windows.Forms;
 using System.IO;
+using System.Drawing;
 
 namespace ToDo
 {
@@ -10,6 +11,7 @@ namespace ToDo
         DataTable todoList = new DataTable();
         bool isEditing = false;
         private const string DataFilePath = "TodoData.xml";
+        private DateTimePicker dateTimePickerDeadline;
 
         public TodoList()
         {
@@ -22,11 +24,80 @@ namespace ToDo
             todoList.Columns.Add("Date", typeof(DateTime));
             todoList.Columns.Add("Title");
             todoList.Columns.Add("Description");
+            todoList.Columns.Add("Deadline");
 
             toDoListView.DataSource = todoList;
 
+            // Set initial placeholder text
+            textBoxTitle.Text = "Enter title...";
+            textBoxTitle.ForeColor = Color.Gray;
+
+            textBoxDescription.Text = "Enter description...";
+            textBoxDescription.ForeColor = Color.Gray;
+
+            // Subscribe to Enter and Leave events
+            textBoxTitle.Enter += TextBoxTitle_Enter;
+            textBoxTitle.Leave += TextBoxTitle_Leave;
+
+            textBoxDescription.Enter += TextBoxDescription_Enter;
+            textBoxDescription.Leave += TextBoxDescription_Leave;
+
             monthCalendar1.SetDate(DateTime.Today);
+
+            InitializeDateTimePickerDeadline();
         }
+
+        private void InitializeDateTimePickerDeadline()
+        {
+            dateTimePickerDeadline = new DateTimePicker();
+            dateTimePickerDeadline.Location = new Point(100, 130);
+            dateTimePickerDeadline.Size = new Size(160, 20);
+
+            // Set the format of the date.
+            dateTimePickerDeadline.Format = DateTimePickerFormat.Custom;
+            dateTimePickerDeadline.CustomFormat = "MM/dd/yyyy";
+
+            // Add the DateTimePicker to the form's controls.
+            this.Controls.Add(dateTimePickerDeadline);
+        }
+
+        // Start of Textbox Placeholder
+        private void TextBoxTitle_Enter(object sender, EventArgs e)
+        {
+            if (textBoxTitle.Text == "Enter title...")
+            {
+                textBoxTitle.Text = "";
+                textBoxTitle.ForeColor = Color.Black;
+            }
+        }
+
+        private void TextBoxTitle_Leave(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(textBoxTitle.Text))
+            {
+                textBoxTitle.Text = "Enter title...";
+                textBoxTitle.ForeColor = Color.Gray;
+            }
+        }
+
+        private void TextBoxDescription_Enter(object sender, EventArgs e)
+        {
+            if (textBoxDescription.Text == "Enter description...")
+            {
+                textBoxDescription.Text = "";
+                textBoxDescription.ForeColor = Color.Black;
+            }
+        }
+
+        private void TextBoxDescription_Leave(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(textBoxDescription.Text))
+            {
+                textBoxDescription.Text = "Enter description...";
+                textBoxDescription.ForeColor = Color.Gray;
+            }
+        }
+        // End of Textbox Placeholder
 
         private void TodoList_Load(object sender, EventArgs e)
         {
@@ -49,7 +120,7 @@ namespace ToDo
 
             }
 
-
+            ShowAllTodoItems();
             RefreshTodoList(monthCalendar1.SelectionRange.Start.Date);
         }
 
@@ -75,41 +146,59 @@ namespace ToDo
                 row["Title"] = textBoxTitle.Text;
                 row["Description"] = textBoxDescription.Text;
                 row["Date"] = monthCalendar1.SelectionRange.Start.Date;
+                row["Deadline"] = dateTimePickerDeadline.Value; // Set the deadline
             }
             else
             {
-                todoList.Rows.Add(monthCalendar1.SelectionRange.Start.Date, textBoxTitle.Text, textBoxDescription.Text);
+                todoList.Rows.Add(
+                    monthCalendar1.SelectionRange.Start.Date,
+                    textBoxTitle.Text,
+                    textBoxDescription.Text,
+                    dateTimePickerDeadline.Value // Add the deadline
+                );
             }
 
-            textBoxTitle.Text = "";
-            textBoxDescription.Text = "";
+            // Clear the inputs
+            textBoxTitle.Text = "Enter title...";
+            textBoxDescription.Text = "Enter description...";
             isEditing = false;
-            FilterTodosByDate(monthCalendar1.SelectionRange.Start);
 
+            // Set placeholder text color
+            textBoxTitle.ForeColor = Color.Gray;
+            textBoxDescription.ForeColor = Color.Gray;
+
+            // Filter and refresh the to-do list view
+            FilterTodosByDate(monthCalendar1.SelectionRange.Start);
             RefreshTodoList(monthCalendar1.SelectionRange.Start.Date);
+
+            // Save the updated list to the XML file
             todoList.WriteXml(DataFilePath);
         }
 
         private void editButton_Click(object sender, EventArgs e)
         {
-            isEditing = true;
+            if (toDoListView.SelectedRows.Count > 0) // Ensure there is a selected row
+            { 
+                isEditing = true;
+                DataRow row = todoList.Rows[toDoListView.CurrentCell.RowIndex];
+                textBoxTitle.Text = row["Title"].ToString();
+                textBoxDescription.Text = row["Description"].ToString();
+                dateTimePickerDeadline.Value = (DateTime)row["Deadline"]; // Load the deadline
+                RefreshTodoList(monthCalendar1.SelectionRange.Start.Date);
+            }
 
-            textBoxTitle.Text = todoList.Rows[toDoListView.CurrentCell.RowIndex].ItemArray[1].ToString();
-            textBoxDescription.Text = todoList.Rows[toDoListView.CurrentCell.RowIndex].ItemArray[2].ToString();
         }
 
         private void deleteButton_Click(object sender, EventArgs e)
         {
             if (toDoListView.SelectedRows.Count > 0) // Ensure there is a selected row
             {
-                // Get the current selected row
-                DataGridViewRow selectedRow = toDoListView.SelectedRows[0];
-
-                if (selectedRow != null) // Check if the selected row is not null
-                {
-                    toDoListView.Rows.Remove(selectedRow);
-                    // If you have a backing data source, remove the item from there as well
-                }
+                int rowIndex = toDoListView.CurrentCell.RowIndex;
+                todoList.Rows[rowIndex].Delete();
+                RefreshTodoList(monthCalendar1.SelectionRange.Start.Date);
+                // If you have a backing data source, remove the item from there as well
+                todoList.WriteXml(DataFilePath); // Save the changes after deletion
+                
             }
             else
             {
@@ -126,7 +215,26 @@ namespace ToDo
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            RefreshTodoList(monthCalendar1.SelectionRange.Start.Date);
+            // Check if the double-click is not on the header.
+            if (e.RowIndex >= 0)
+            {
+                // Begin edit the current cell if it's not the date cell.
+                if (e.ColumnIndex != toDoListView.Columns["Date"].Index)
+                {
+                    toDoListView.BeginEdit(true);
+                }
+                else
+                {
+                    
+                }
+            }
+        }
+
+        private void dataGridView1_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            // Save the updated data to your data source here
+            // and refresh the data grid view if needed.
+            todoList.WriteXml(DataFilePath);
         }
 
         private void RefreshTodoList(DateTime date)
@@ -151,7 +259,22 @@ namespace ToDo
             calendarForm.Show();
         }
 
+        private void ShowAllTodoItems()
+        {
+            // Remove any existing date filters
+            DataView view = new DataView(todoList);
+            view.RowFilter = ""; // An empty string filter will show all rows
 
+            // Set the data source of the DataGridView to the DataView with no filter
+            toDoListView.DataSource = view;
 
+            // Refresh the DataGridView to update the UI
+            toDoListView.Refresh();
+        }
+
+        private void btnShowAll_Click(object sender, EventArgs e)
+        {
+            ShowAllTodoItems();
+        }
     }
 }
