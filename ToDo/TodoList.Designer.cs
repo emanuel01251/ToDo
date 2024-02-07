@@ -38,6 +38,7 @@
             this.monthCalendar1 = new System.Windows.Forms.MonthCalendar();
             this.labelDeadline = new System.Windows.Forms.Label();
             this.btnShowAll = new System.Windows.Forms.Button();
+            this.btnShowToday = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.toDoListView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -124,7 +125,7 @@
             // 
             // btnShowAll
             // 
-            this.btnShowAll.Location = new System.Drawing.Point(266, 177);
+            this.btnShowAll.Location = new System.Drawing.Point(266, 217);
             this.btnShowAll.Name = "btnShowAll";
             this.btnShowAll.Size = new System.Drawing.Size(100, 40);
             this.btnShowAll.TabIndex = 13;
@@ -132,12 +133,23 @@
             this.btnShowAll.UseVisualStyleBackColor = true;
             this.btnShowAll.Click += new System.EventHandler(this.btnShowAll_Click);
             // 
+            // btnShowToday
+            // 
+            this.btnShowToday.Location = new System.Drawing.Point(266, 171);
+            this.btnShowToday.Name = "btnShowToday";
+            this.btnShowToday.Size = new System.Drawing.Size(100, 40);
+            this.btnShowToday.TabIndex = 14;
+            this.btnShowToday.Text = "Show Today";
+            this.btnShowToday.UseVisualStyleBackColor = true;
+            this.btnShowToday.Click += new System.EventHandler(this.btnShowToday_Click);
+            // 
             // TodoList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(384, 661);
+            this.Controls.Add(this.btnShowToday);
             this.Controls.Add(this.btnShowAll);
             this.Controls.Add(this.labelDeadline);
             this.Controls.Add(this.monthCalendar1);
@@ -170,6 +182,7 @@
         private System.Windows.Forms.MonthCalendar monthCalendar1;
         private System.Windows.Forms.Label labelDeadline;
         private System.Windows.Forms.Button btnShowAll;
+        private System.Windows.Forms.Button btnShowToday;
     }
 }
 

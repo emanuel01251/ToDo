@@ -276,5 +276,19 @@ namespace ToDo
         {
             ShowAllTodoItems();
         }
+
+        private void ShowTodosForDate(DateTime date)
+        {
+            DataView view = new DataView(todoList)
+            {
+                RowFilter = $"Date = '{date:MM/dd/yyyy}'"
+            };
+
+            toDoListView.DataSource = view;
+        }
+        private void btnShowToday_Click(object sender, EventArgs e)
+        {
+            ShowTodosForDate(DateTime.Today);
+        }
     }
 }
