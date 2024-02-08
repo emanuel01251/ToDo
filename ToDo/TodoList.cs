@@ -24,7 +24,8 @@ namespace ToDo
             todoList.Columns.Add("Date", typeof(DateTime));
             todoList.Columns.Add("Title");
             todoList.Columns.Add("Description");
-            todoList.Columns.Add("Deadline");
+            todoList.Columns.Add("Deadline", typeof(DateTime));
+            todoList.Columns.Add("Done", typeof(bool));
 
             toDoListView.DataSource = todoList;
 
@@ -42,8 +43,12 @@ namespace ToDo
             textBoxDescription.Enter += TextBoxDescription_Enter;
             textBoxDescription.Leave += TextBoxDescription_Leave;
 
+            toDoListView.CellContentClick += toDoListView_CellContentClick;
+            toDoListView.CellFormatting += new DataGridViewCellFormattingEventHandler(toDoListView_CellFormatting);
+            
             monthCalendar1.SetDate(DateTime.Today);
 
+            AddDoneColumnToDataGridView();
             InitializeDateTimePickerDeadline();
         }
 
@@ -99,6 +104,59 @@ namespace ToDo
         }
         // End of Textbox Placeholder
 
+        //Start of Done function
+        private void AddDoneColumnToDataGridView()
+        {
+            var doneColumn = new DataGridViewCheckBoxColumn
+            {
+                Name = "DoneColumn",
+                HeaderText = "Done",
+                DataPropertyName = "Done", // This must match the name of the DataColumn.
+                AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells,
+                TrueValue = true,
+                FalseValue = false
+            };
+            toDoListView.Columns.Add(doneColumn);
+        }
+
+        private void toDoListView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            // Confirm this is a click in the "DoneColumn" column.
+            if (toDoListView.Columns[e.ColumnIndex] is DataGridViewCheckBoxColumn && e.RowIndex >= 0)
+            {
+                // Safely toggle the "Done" status.
+                object value = toDoListView.Rows[e.RowIndex].Cells["DoneColumn"].Value;
+                bool currentValue = (value is DBNull) ? false : Convert.ToBoolean(value);
+                toDoListView.Rows[e.RowIndex].Cells["DoneColumn"].Value = !currentValue;
+
+                // Optionally, save the updated to-do list to your data file.
+                todoList.WriteXml(DataFilePath);
+            }
+        }
+
+        private void toDoListView_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (toDoListView.Columns["Done"] != null && e.ColumnIndex == toDoListView.Columns["DoneColumn"].Index && e.RowIndex >= 0)
+            {
+                DataGridViewRow row = toDoListView.Rows[e.RowIndex];
+                if (row.Cells["Done"].Value != null)
+                {
+                    bool done = (bool)row.Cells["Done"].Value;
+                    if (done)
+                    {
+                        row.DefaultCellStyle.Font = new Font(toDoListView.Font, FontStyle.Strikeout);
+                        row.DefaultCellStyle.ForeColor = Color.Gray;
+                    }
+                    else
+                    {
+                        row.DefaultCellStyle.Font = new Font(toDoListView.Font, FontStyle.Regular);
+                        row.DefaultCellStyle.ForeColor = Color.Black;
+                    }
+                }
+            }
+        }
+
+        //End of Done Function
         private void TodoList_Load(object sender, EventArgs e)
         {
             // Load existing to-dos if the file exists and is not empty
@@ -146,7 +204,7 @@ namespace ToDo
                 row["Title"] = textBoxTitle.Text;
                 row["Description"] = textBoxDescription.Text;
                 row["Date"] = monthCalendar1.SelectionRange.Start.Date;
-                row["Deadline"] = dateTimePickerDeadline.Value; // Set the deadline
+                row["Deadline"] = dateTimePickerDeadline.Value.Date; // Set the deadline
             }
             else
             {
@@ -154,7 +212,7 @@ namespace ToDo
                     monthCalendar1.SelectionRange.Start.Date,
                     textBoxTitle.Text,
                     textBoxDescription.Text,
-                    dateTimePickerDeadline.Value // Add the deadline
+                    dateTimePickerDeadline.Value.Date // Add the deadline
                 );
             }
 

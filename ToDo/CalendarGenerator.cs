@@ -60,31 +60,43 @@ namespace ToDo
 
         public void PopulateCalendar(TableLayoutPanel panel, DateTime startDate, DataTable todoList)
         {
-            // each column in the panel represents a day and each row represents a to-do item
+            // Clear previous items from the panel, if necessary
+            foreach (Control control in panel.Controls)
+            {
+                if (control is FlowLayoutPanel flowPanel)
+                {
+                    flowPanel.Controls.Clear();
+                }
+            }
+
+            // Each column in the panel represents a day and each row represents a to-do item
             foreach (DataRow row in todoList.Rows)
             {
-                var date = (DateTime)row["Date"];
-                if (date >= startDate && date < startDate.AddDays(7))
+                bool isDone = row["Done"] is DBNull ? false : Convert.ToBoolean(row["Done"]);
+                if (!isDone)
                 {
-                    int columnIndex = (int)date.DayOfWeek;
-                    // Correct the row index to 1 to retrieve the FlowLayoutPanel from the second row.
-                    var dayPanel = (FlowLayoutPanel)panel.GetControlFromPosition(columnIndex, 1);
-
-
-                    // Create a control to represent the to-do item
-                    var taskLabel = new Label
+                    var deadline = (DateTime)row["Deadline"];
+                    if (deadline >= startDate && deadline < startDate.AddDays(7))
                     {
-                        Text = row["Title"].ToString() + " - " + row["Description"].ToString() + " - " + row["Deadline"].ToString(),
-                        Font = new Font("Arial", 10, FontStyle.Regular),
-                        Height = 20,
-                        AutoSize = true,
-                        Margin = new Padding(3),
-                        Padding = new Padding(3),
-                        //BorderStyle = BorderStyle.FixedSingle
-                    };
+                        int columnIndex = (int)deadline.DayOfWeek;
+                        var dayPanel = (FlowLayoutPanel)panel.GetControlFromPosition(columnIndex, 1);
 
-                    // Add the control to the corresponding day's FlowLayoutPanel
-                    dayPanel.Controls.Add(taskLabel);
+                        if (dayPanel != null)
+                        {
+                            // Create a control to represent the to-do item
+                            var taskLabel = new Label
+                            {
+                                Text = $"{row["Title"]} - {row["Description"]} - {deadline.ToString("MM/dd/yyyy")}",
+                                Font = new Font("Arial", 10, FontStyle.Regular),
+                                AutoSize = true,
+                                Margin = new Padding(3),
+                                Padding = new Padding(3)
+                            };
+
+                            // Add the control to the corresponding day's FlowLayoutPanel
+                            dayPanel.Controls.Add(taskLabel);
+                        }
+                    }
                 }
             }
         }
