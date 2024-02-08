@@ -119,6 +119,37 @@ namespace ToDo
 
         private void calendarLayoutPanel_Paint(object sender, PaintEventArgs e)
         {
+            base.OnPaint(e);
+
+            int cornerRadius = 1;
+
+            System.Drawing.Drawing2D.GraphicsPath path = new System.Drawing.Drawing2D.GraphicsPath();
+            path.AddArc(new Rectangle(0, 0, cornerRadius, cornerRadius), 180, 90);
+            path.AddArc(new Rectangle(Width - cornerRadius, 0, cornerRadius, cornerRadius), -90, 90);
+            path.AddArc(new Rectangle(Width - cornerRadius, Height - cornerRadius, cornerRadius, cornerRadius), 0, 90);
+            path.AddArc(new Rectangle(0, Height - cornerRadius, cornerRadius, cornerRadius), 90, 90);
+            path.CloseFigure();
+
+            e.Graphics.SetClip(path);
+
+            using (SolidBrush brush = new SolidBrush(BackColor))
+            {
+                e.Graphics.FillRectangle(brush, 0, 0, Width, Height);
+            }
+
+            using (Pen pen = new Pen(Color.Transparent))
+            {
+                e.Graphics.DrawPath(pen, path);
+            }
+        }
+
+        private void flowLayoutPanel5_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void flowLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        {
 
         }
     }

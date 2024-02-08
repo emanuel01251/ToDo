@@ -24,13 +24,14 @@ namespace ToDo
             todoList.Columns.Add("Date", typeof(DateTime));
             todoList.Columns.Add("Title");
             todoList.Columns.Add("Description");
-            todoList.Columns.Add("Deadline");
+            todoList.Columns.Add("Deadline", typeof(DateTime));
 
             toDoListView.DataSource = todoList;
 
             // Set initial placeholder text
             textBoxTitle.Text = "Enter title...";
             textBoxTitle.ForeColor = Color.Gray;
+            textBoxTitle.Font = new Font("Myanmar Text", 6);
 
             textBoxDescription.Text = "Enter description...";
             textBoxDescription.ForeColor = Color.Gray;
@@ -50,7 +51,7 @@ namespace ToDo
         private void InitializeDateTimePickerDeadline()
         {
             dateTimePickerDeadline = new DateTimePicker();
-            dateTimePickerDeadline.Location = new Point(100, 130);
+            dateTimePickerDeadline.Location = new Point(110, 242);
             dateTimePickerDeadline.Size = new Size(160, 20);
 
             // Set the format of the date.
@@ -275,6 +276,24 @@ namespace ToDo
         private void btnShowAll_Click(object sender, EventArgs e)
         {
             ShowAllTodoItems();
+        }
+        private void ShowTodosForDate(DateTime date)
+        {
+            DataView view = new DataView(todoList)
+            {
+                RowFilter = $"Date = '{date:MM/dd/yyyy}'"
+            };
+
+            toDoListView.DataSource = view;
+        }
+        private void btnShowToday_Click(object sender, EventArgs e)
+        {
+            ShowTodosForDate(DateTime.Today);
+        }
+
+        private void textBoxTitle_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

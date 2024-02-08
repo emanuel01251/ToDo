@@ -65,14 +65,15 @@
             // 
             // calendarLayoutPanel
             // 
+            this.calendarLayoutPanel.BackColor = System.Drawing.Color.AliceBlue;
             this.calendarLayoutPanel.ColumnCount = 7;
             this.calendarLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 47.76119F));
             this.calendarLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 52.23881F));
             this.calendarLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 118F));
             this.calendarLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 120F));
             this.calendarLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 108F));
-            this.calendarLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 109F));
-            this.calendarLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 115F));
+            this.calendarLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 118F));
+            this.calendarLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 108F));
             this.calendarLayoutPanel.Controls.Add(this.flowLayoutPanel7, 6, 0);
             this.calendarLayoutPanel.Controls.Add(this.flowLayoutPanel6, 5, 0);
             this.calendarLayoutPanel.Controls.Add(this.flowLayoutPanel5, 4, 0);
@@ -90,42 +91,43 @@
             // 
             // flowLayoutPanel7
             // 
-            this.flowLayoutPanel7.Location = new System.Drawing.Point(663, 3);
+            this.flowLayoutPanel7.Location = new System.Drawing.Point(670, 3);
             this.flowLayoutPanel7.Name = "flowLayoutPanel7";
             this.flowLayoutPanel7.Size = new System.Drawing.Size(94, 100);
             this.flowLayoutPanel7.TabIndex = 7;
             // 
             // flowLayoutPanel6
             // 
-            this.flowLayoutPanel6.Location = new System.Drawing.Point(554, 3);
+            this.flowLayoutPanel6.Location = new System.Drawing.Point(552, 3);
             this.flowLayoutPanel6.Name = "flowLayoutPanel6";
             this.flowLayoutPanel6.Size = new System.Drawing.Size(94, 100);
             this.flowLayoutPanel6.TabIndex = 6;
             // 
             // flowLayoutPanel5
             // 
-            this.flowLayoutPanel5.Location = new System.Drawing.Point(446, 3);
+            this.flowLayoutPanel5.Location = new System.Drawing.Point(444, 3);
             this.flowLayoutPanel5.Name = "flowLayoutPanel5";
             this.flowLayoutPanel5.Size = new System.Drawing.Size(94, 100);
             this.flowLayoutPanel5.TabIndex = 5;
+            this.flowLayoutPanel5.Paint += new System.Windows.Forms.PaintEventHandler(this.flowLayoutPanel5_Paint);
             // 
             // flowLayoutPanel4
             // 
-            this.flowLayoutPanel4.Location = new System.Drawing.Point(326, 3);
+            this.flowLayoutPanel4.Location = new System.Drawing.Point(324, 3);
             this.flowLayoutPanel4.Name = "flowLayoutPanel4";
             this.flowLayoutPanel4.Size = new System.Drawing.Size(94, 100);
             this.flowLayoutPanel4.TabIndex = 4;
             // 
             // flowLayoutPanel3
             // 
-            this.flowLayoutPanel3.Location = new System.Drawing.Point(208, 3);
+            this.flowLayoutPanel3.Location = new System.Drawing.Point(206, 3);
             this.flowLayoutPanel3.Name = "flowLayoutPanel3";
             this.flowLayoutPanel3.Size = new System.Drawing.Size(94, 100);
             this.flowLayoutPanel3.TabIndex = 3;
             // 
             // flowLayoutPanel2
             // 
-            this.flowLayoutPanel2.Location = new System.Drawing.Point(101, 3);
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(100, 3);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
             this.flowLayoutPanel2.Size = new System.Drawing.Size(94, 100);
             this.flowLayoutPanel2.TabIndex = 2;
@@ -134,8 +136,9 @@
             // 
             this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 3);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(92, 100);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(91, 100);
             this.flowLayoutPanel1.TabIndex = 1;
+            this.flowLayoutPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.flowLayoutPanel1_Paint);
             // 
             // cmbWeeks
             // 
@@ -177,6 +180,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.LightSkyBlue;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -185,8 +189,9 @@
             this.Controls.Add(this.calendarLayoutPanel);
             this.Controls.Add(this.cmbYear);
             this.Controls.Add(this.cmbMonth);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "CalendarForm";
-            this.Text = "CalendarForm";
+            this.Text = "TickTask - Weekly View";
             this.Load += new System.EventHandler(this.CalendarForm_Load);
             this.calendarLayoutPanel.ResumeLayout(false);
             this.ResumeLayout(false);
