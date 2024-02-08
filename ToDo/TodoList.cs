@@ -16,17 +16,16 @@ namespace ToDo
         public TodoList()
         {
             InitializeComponent();
-
             // Set the table name
             todoList.TableName = "Todos";
 
-            // Add a date column to our datatable
+            // Add a column to our datatable
             todoList.Columns.Add("Date", typeof(DateTime));
             todoList.Columns.Add("Title");
             todoList.Columns.Add("Description");
             todoList.Columns.Add("Deadline", typeof(DateTime));
             todoList.Columns.Add("Done", typeof(bool));
-
+            AddDoneColumnToDataGridView();
             toDoListView.DataSource = todoList;
 
             // Set initial placeholder text
@@ -44,11 +43,10 @@ namespace ToDo
             textBoxDescription.Leave += TextBoxDescription_Leave;
 
             toDoListView.CellContentClick += toDoListView_CellContentClick;
-            toDoListView.CellFormatting += new DataGridViewCellFormattingEventHandler(toDoListView_CellFormatting);
-            
-            monthCalendar1.SetDate(DateTime.Today);
 
-            AddDoneColumnToDataGridView();
+            monthCalendar1.SetDate(DateTime.Today);
+            toDoListView.CellFormatting += new DataGridViewCellFormattingEventHandler(toDoListView_CellFormatting);
+
             InitializeDateTimePickerDeadline();
         }
 
@@ -131,17 +129,21 @@ namespace ToDo
 
                 // Optionally, save the updated to-do list to your data file.
                 todoList.WriteXml(DataFilePath);
+                RefreshTodoList(monthCalendar1.SelectionRange.Start.Date);
             }
         }
 
         private void toDoListView_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-            if (toDoListView.Columns["Done"] != null && e.ColumnIndex == toDoListView.Columns["DoneColumn"].Index && e.RowIndex >= 0)
+            if (toDoListView.Columns["DoneColumn"] != null && e.ColumnIndex == toDoListView.Columns["DoneColumn"].Index && e.RowIndex >= 0)
             {
                 DataGridViewRow row = toDoListView.Rows[e.RowIndex];
-                if (row.Cells["Done"].Value != null)
+                var doneCellValue = row.Cells["DoneColumn"].Value;
+
+                // Safely check if the value is not null and is a boolean before casting.
+                if (doneCellValue != null && doneCellValue != DBNull.Value && doneCellValue is bool)
                 {
-                    bool done = (bool)row.Cells["Done"].Value;
+                    bool done = (bool)doneCellValue;
                     if (done)
                     {
                         row.DefaultCellStyle.Font = new Font(toDoListView.Font, FontStyle.Strikeout);

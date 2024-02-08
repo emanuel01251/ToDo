@@ -1,4 +1,6 @@
-﻿namespace ToDo
+﻿using System.Windows.Forms;
+
+namespace ToDo
 {
     partial class TodoList
     {
@@ -44,6 +46,7 @@
             // 
             // toDoListView
             // 
+            this.toDoListView.AllowUserToAddRows = false;
             this.toDoListView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.toDoListView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.toDoListView.Location = new System.Drawing.Point(12, 328);
