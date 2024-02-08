@@ -16,6 +16,8 @@ namespace ToDo
         public TodoList()
         {
             InitializeComponent();
+            toDoListView.CellFormatting += toDoListView_CellFormatting;
+
             // Set the table name
             todoList.TableName = "Todos";
 
@@ -45,15 +47,15 @@ namespace ToDo
             toDoListView.CellContentClick += toDoListView_CellContentClick;
 
             monthCalendar1.SetDate(DateTime.Today);
+            
             toDoListView.CellFormatting += new DataGridViewCellFormattingEventHandler(toDoListView_CellFormatting);
-
             InitializeDateTimePickerDeadline();
         }
 
         private void InitializeDateTimePickerDeadline()
         {
             dateTimePickerDeadline = new DateTimePicker();
-            dateTimePickerDeadline.Location = new Point(100, 130);
+            dateTimePickerDeadline.Location = new Point(110, 242);
             dateTimePickerDeadline.Size = new Size(160, 20);
 
             // Set the format of the date.
@@ -129,9 +131,13 @@ namespace ToDo
 
                 // Optionally, save the updated to-do list to your data file.
                 todoList.WriteXml(DataFilePath);
-                RefreshTodoList(monthCalendar1.SelectionRange.Start.Date);
+
+                // Refresh the row to apply cell formatting immediately.
+                toDoListView.RefreshEdit();
+                toDoListView.InvalidateRow(e.RowIndex);
             }
         }
+
 
         private void toDoListView_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
@@ -157,7 +163,6 @@ namespace ToDo
                 }
             }
         }
-
         //End of Done Function
         private void TodoList_Load(object sender, EventArgs e)
         {
@@ -238,7 +243,7 @@ namespace ToDo
         private void editButton_Click(object sender, EventArgs e)
         {
             if (toDoListView.SelectedRows.Count > 0) // Ensure there is a selected row
-            { 
+            {
                 isEditing = true;
                 DataRow row = todoList.Rows[toDoListView.CurrentCell.RowIndex];
                 textBoxTitle.Text = row["Title"].ToString();
@@ -258,7 +263,7 @@ namespace ToDo
                 RefreshTodoList(monthCalendar1.SelectionRange.Start.Date);
                 // If you have a backing data source, remove the item from there as well
                 todoList.WriteXml(DataFilePath); // Save the changes after deletion
-                
+
             }
             else
             {
@@ -285,7 +290,7 @@ namespace ToDo
                 }
                 else
                 {
-                    
+
                 }
             }
         }
@@ -312,7 +317,7 @@ namespace ToDo
         private void btnOpenCalendar_Click(object sender, EventArgs e)
         {
             ICalendarGenerator calendarGenerator = new CalendarGenerator();
- 
+
 
             CalendarForm calendarForm = new CalendarForm(todoList, calendarGenerator);
 
@@ -349,6 +354,10 @@ namespace ToDo
         private void btnShowToday_Click(object sender, EventArgs e)
         {
             ShowTodosForDate(DateTime.Today);
+        }
+        private void textBoxTitle_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
