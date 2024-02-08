@@ -21,6 +21,10 @@ namespace ToDo
             // Set the table name
             todoList.TableName = "Todos";
 
+            // Attach actions directly to button click events
+            btnShowAll.Click += (sender, e) => ShowAllTodoItems();
+            btnToday.Click += (sender, e) => ShowTodosForDate(DateTime.Today);
+
             // Add a column to our datatable
             todoList.Columns.Add("Date", typeof(DateTime));
             todoList.Columns.Add("Title");

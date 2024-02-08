@@ -35,11 +35,11 @@ namespace ToDo
                 var headerLabel = new Label
                 {
                     Text = currentDay.ToString("dddd"),
-                    Font = new Font("Arial Black", 10),
+                    Font = new Font("Myanmar Text", 10, FontStyle.Bold),
                     Height = 20,
                     Dock = DockStyle.Fill,
                     TextAlign = ContentAlignment.MiddleCenter,
-                    BackColor = Color.LightGray // Just an example, you can customize the appearance
+                    BackColor = Color.FromArgb(190, 216, 237) // Just an example, you can customize the appearance
                 };
                 panel.Controls.Add(headerLabel, i, 0);
 
@@ -87,7 +87,7 @@ namespace ToDo
                             var taskLabel = new Label
                             {
                                 Text = $"{row["Title"]} - {row["Description"]} - {deadline.ToString("MM/dd/yyyy")}",
-                                Font = new Font("Arial", 10, FontStyle.Regular),
+                                Font = new Font("Myanmar Text", 10),
                                 AutoSize = true,
                                 Margin = new Padding(3),
                                 Padding = new Padding(3)

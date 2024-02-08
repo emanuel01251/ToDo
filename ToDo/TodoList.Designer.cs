@@ -107,7 +107,7 @@
             // 
             this.labelTodoList.AutoSize = true;
             this.labelTodoList.BackColor = System.Drawing.Color.Transparent;
-            this.labelTodoList.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelTodoList.Font = new System.Drawing.Font("Gotham Black", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelTodoList.ForeColor = System.Drawing.Color.LightCyan;
             this.labelTodoList.Location = new System.Drawing.Point(79, 19);
             this.labelTodoList.Name = "labelTodoList";
@@ -115,7 +115,6 @@
             this.labelTodoList.TabIndex = 10;
             this.labelTodoList.Text = "Tick";
             this.labelTodoList.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            this.labelTodoList.Click += new System.EventHandler(this.btnShowToday_Click);
             // 
             // btnOpenCalendar
             // 
@@ -159,13 +158,12 @@
             this.btnToday.TabIndex = 14;
             this.btnToday.Text = "Today\'s Task";
             this.btnToday.UseVisualStyleBackColor = true;
-            this.btnToday.Click += new System.EventHandler(this.btnShowToday_Click);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Gotham Black", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.White;
             this.label1.Location = new System.Drawing.Point(169, 19);
             this.label1.Name = "label1";
